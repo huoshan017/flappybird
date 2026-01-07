@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnm1xxa8kqd5l"]
+
+[ext_resource type="Script" uid="uid://84amlgyhmru0" path="res://scripts/entities/e_background.gd" id="1_vllos"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_rnhhs"]
+[ext_resource type="Script" uid="uid://dfigqaghct6hs" path="res://scripts/components/c_transform.gd" id="3_rbbqs"]
+[ext_resource type="Script" uid="uid://d1x7mgt2kfncm" path="res://scripts/components/c_velocity.gd" id="4_rbbqs"]
+
+[sub_resource type="Resource" id="Resource_q0fo3"]
+script = ExtResource("3_rbbqs")
+metadata/_custom_type_script = "uid://dfigqaghct6hs"
+
+[sub_resource type="Resource" id="Resource_dc1ih"]
+script = ExtResource("4_rbbqs")
+metadata/_custom_type_script = "uid://d1x7mgt2kfncm"
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_vllos")
+type_id = 200
+component_resources = Array[ExtResource("2_rnhhs")]([SubResource("Resource_q0fo3"), SubResource("Resource_dc1ih")])

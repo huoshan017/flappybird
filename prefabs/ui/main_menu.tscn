@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://8ls3yv4vn2ld"]
+
+[ext_resource type="Texture2D" uid="uid://c6iuskpt2o0c8" path="res://resources/pic/title.png" id="1_enkug"]
+[ext_resource type="Script" uid="uid://byoq7fn67ta27" path="res://scripts/ui/main_menu.gd" id="2_cwbwj"]
+[ext_resource type="Texture2D" uid="uid://dd5llwho5o7t8" path="res://resources/pic/button_play.png" id="3_hyes8"]
+[ext_resource type="Texture2D" uid="uid://b6rolkva7gxjo" path="res://resources/pic/button_rate.png" id="4_nr6jy"]
+[ext_resource type="Texture2D" uid="uid://2j4q7vgru7yl" path="res://resources/pic/button_score.png" id="5_cwbwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwbwj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr6jy"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_cwbwj")
+
+[node name="GameTitleTextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 117.0
+offset_top = 326.0
+offset_right = 613.0
+offset_bottom = 462.0
+texture = ExtResource("1_enkug")
+stretch_mode = 4
+
+[node name="RateTextureButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 285.0
+offset_top = 678.0
+offset_right = 446.0
+offset_bottom = 799.0
+icon = ExtResource("4_nr6jy")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="PlayTextureButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 58.0
+offset_top = 823.0
+offset_right = 348.0
+offset_bottom = 1052.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cwbwj")
+icon = ExtResource("3_hyes8")
+flat = true
+alignment = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="ScoreTextureButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 378.0
+offset_top = 847.0
+offset_right = 672.0
+offset_bottom = 1031.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr6jy")
+icon = ExtResource("5_cwbwj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="button_up" from="RateTextureButton" to="." method="_on_rate_button_pressed"]
+[connection signal="button_up" from="PlayTextureButton" to="." method="_on_play_button_pressed"]
+[connection signal="button_up" from="ScoreTextureButton" to="." method="_on_score_button_pressed"]

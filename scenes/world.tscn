@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://368xseorf1eq"]
+
+[ext_resource type="Script" uid="uid://cdu5tlyk72uu4" path="res://addons/gecs/ecs/world.gd" id="1_tsias"]
+[ext_resource type="Script" uid="uid://ck6mc7q2qt60w" path="res://scripts/systems/s_level.gd" id="3_71j4m"]
+[ext_resource type="Script" uid="uid://7wjqyusko6h4" path="res://scripts/systems/s_player_movement.gd" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://bhv4hnusdqt4t" path="res://scripts/systems/s_movement.gd" id="4_qfnet"]
+[ext_resource type="PackedScene" uid="uid://d25omblxvtlnj" path="res://scenes/level_1.tscn" id="5_71j4m"]
+[ext_resource type="Script" uid="uid://bip1jme6bg2ih" path="res://scripts/systems/s_pipe_manager.gd" id="5_qfnet"]
+
+[node name="World" type="Node"]
+script = ExtResource("1_tsias")
+entity_nodes_root = NodePath("Entities")
+system_nodes_root = NodePath("Systems")
+metadata/_custom_type_script = "uid://cdu5tlyk72uu4"
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="Gameplay" type="Node" parent="Systems"]
+
+[node name="LevelSystem" type="Node" parent="Systems/Gameplay"]
+script = ExtResource("3_71j4m")
+group = "Gameplay"
+metadata/_custom_type_script = "uid://ck6mc7q2qt60w"
+
+[node name="PipeManagerSystem" type="Node" parent="Systems/Gameplay"]
+script = ExtResource("5_qfnet")
+group = "Gameplay"
+process_empty = true
+metadata/_custom_type_script = "uid://bip1jme6bg2ih"
+
+[node name="Physics" type="Node" parent="Systems"]
+
+[node name="PlayerMovementSystem" type="Node" parent="Systems/Physics"]
+script = ExtResource("4_71j4m")
+group = "Physics"
+metadata/_custom_type_script = "uid://7wjqyusko6h4"
+
+[node name="MovementSystem" type="Node" parent="Systems/Physics"]
+script = ExtResource("4_qfnet")
+group = "Physics"
+metadata/_custom_type_script = "uid://bhv4hnusdqt4t"
+
+[node name="Entities" type="Node" parent="."]
+
+[node name="Level1" parent="Entities" instance=ExtResource("5_71j4m")]

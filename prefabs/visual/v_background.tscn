@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfufkcmh2few7"]
+
+[ext_resource type="Script" uid="uid://cquxkdp7j44b4" path="res://scripts/visual/t_node2d.gd" id="1_c1va4"]
+[ext_resource type="Texture2D" uid="uid://cxj5d1mwx3b1y" path="res://resources/pic/bg_day.png" id="1_hm60a"]
+
+[node name="VisualBackground" type="Node2D"]
+script = ExtResource("1_c1va4")
+type_id = 200
+metadata/_custom_type_script = "uid://cquxkdp7j44b4"
+
+[node name="OutlookTextureRect" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("1_hm60a")

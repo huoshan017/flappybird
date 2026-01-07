@@ -1,0 +1,25 @@
+[gd_scene load_steps=8 format=3 uid="uid://6t6lnrg7yh7r"]
+
+[ext_resource type="Script" uid="uid://cxpxlgt0c8mqw" path="res://scripts/entities/e_pipe.gd" id="1_31tfl"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_5d501"]
+[ext_resource type="Script" uid="uid://dfigqaghct6hs" path="res://scripts/components/c_transform.gd" id="3_at7wy"]
+[ext_resource type="Script" uid="uid://cxpqdu5wjlikp" path="res://scripts/components/c_pipe_id.gd" id="4_1q7wq"]
+
+[sub_resource type="Resource" id="Resource_31tfl"]
+script = ExtResource("3_at7wy")
+metadata/_custom_type_script = "uid://dfigqaghct6hs"
+
+[sub_resource type="Resource" id="Resource_3lp0l"]
+script = ExtResource("4_1q7wq")
+metadata/_custom_type_script = "uid://cxpqdu5wjlikp"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfmnk"]
+size = Vector2(90, 640)
+
+[node name="PipeUp" type="StaticBody2D"]
+script = ExtResource("1_31tfl")
+type_id = 101
+component_resources = Array[ExtResource("2_5d501")]([SubResource("Resource_31tfl"), SubResource("Resource_3lp0l")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kfmnk")

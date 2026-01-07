@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnv7mdi0xkrlc"]
+
+[ext_resource type="Script" uid="uid://cquxkdp7j44b4" path="res://scripts/visual/t_node2d.gd" id="1_lp46s"]
+[ext_resource type="Texture2D" uid="uid://dstr3hvhh027p" path="res://resources/pic/pipe_up.png" id="2_y5o20"]
+
+[node name="VPipeUp" type="Node2D"]
+script = ExtResource("1_lp46s")
+type_id = 101
+metadata/_custom_type_script = "uid://cquxkdp7j44b4"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_y5o20")

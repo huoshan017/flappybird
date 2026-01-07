@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhssusbthf57o"]
+
+[ext_resource type="Script" uid="uid://bstn4rabjjn5e" path="res://scripts/visual/visual_floor.gd" id="1_8u4y5"]
+[ext_resource type="Texture2D" uid="uid://ff805bmkm7l2" path="res://resources/pic/land.png" id="2_8u4y5"]
+
+[node name="VFloor" type="Node2D"]
+z_index = 1
+scale = Vector2(2.14, 2.51)
+script = ExtResource("1_8u4y5")
+type_id = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(168, 55)
+scale = Vector2(1.0027258, 0.99999994)
+texture = ExtResource("2_8u4y5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(504, 55)
+scale = Vector2(0.99988866, 0.99999994)
+texture = ExtResource("2_8u4y5")

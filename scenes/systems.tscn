@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjgprh7sd2drw"]
+
+[ext_resource type="Script" uid="uid://7wjqyusko6h4" path="res://scripts/systems/s_player_movement.gd" id="2_asfa3"]
+[ext_resource type="Script" uid="uid://ck6mc7q2qt60w" path="res://scripts/systems/s_level.gd" id="3_go6dy"]
+
+[node name="Systems" type="Node"]
+
+[node name="GamePlay" type="Node" parent="."]
+
+[node name="LevelSystem" type="Node" parent="GamePlay"]
+script = ExtResource("3_go6dy")
+group = "gameplay"
+metadata/_custom_type_script = "uid://ck6mc7q2qt60w"
+
+[node name="Physics" type="Node" parent="."]
+
+[node name="PlayerMovementSystem" type="Node" parent="Physics"]
+script = ExtResource("2_asfa3")
+group = "physics"
