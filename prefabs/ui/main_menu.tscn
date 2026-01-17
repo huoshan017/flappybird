@@ -33,7 +33,7 @@ offset_bottom = 462.0
 texture = ExtResource("1_enkug")
 stretch_mode = 4
 
-[node name="RateTextureButton" type="Button" parent="."]
+[node name="RateButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 285.0
@@ -45,7 +45,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="PlayTextureButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 58.0
@@ -59,7 +59,7 @@ alignment = 0
 icon_alignment = 1
 expand_icon = true
 
-[node name="ScoreTextureButton" type="Button" parent="."]
+[node name="LeaderBoardButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 378.0
@@ -72,6 +72,6 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="button_up" from="RateTextureButton" to="." method="_on_rate_button_pressed"]
-[connection signal="button_up" from="PlayTextureButton" to="." method="_on_play_button_pressed"]
-[connection signal="button_up" from="ScoreTextureButton" to="." method="_on_score_button_pressed"]
+[connection signal="button_up" from="RateButton" to="." method="_on_rate_button_pressed"]
+[connection signal="button_up" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="button_up" from="LeaderBoardButton" to="." method="_on_leaderboard_button_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f7e1cyg3r1it"]
+
+[ext_resource type="Script" uid="uid://2gdhchpb5rym" path="res://scripts/login_account.gd" id="1_gxhsb"]
+
+[node name="GooglePlaygamesService" type="Node"]
+script = ExtResource("1_gxhsb")

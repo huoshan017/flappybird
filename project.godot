@@ -26,18 +26,19 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 Global="*res://scripts/autoload/global.gd"
 SceneChanger="*res://scenes/scene_changer.tscn"
 SoundManager="*res://scripts/sound_manager.gd"
+GodotPlayGameServices="*res://addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/gecs/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/loggie/plugin.cfg", "res://addons/yaml/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotPlayGameServices/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/gdUnit4/plugin.cfg", "res://addons/gecs/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/loggie/plugin.cfg", "res://addons/yaml/plugin.cfg")
 
 [gecs]
 

@@ -5,6 +5,7 @@ func _ready() -> void:
 	Signals.entity_flapped.connect(_on_flapped)
 	Signals.entity_collide.connect(_on_collide)
 	Signals.entity_dead.connect(_on_dead)
+	Signals.entity_pass_through.connect(_on_pass_through)
 
 func play():
 	$AnimatedSprite2D.play("bird_flying")
@@ -20,3 +21,6 @@ func _on_collide(_entity: Entity, _collider: Entity) -> void:
 
 func _on_dead(_entity: Entity) -> void:
 	SoundManager.play_sfx(SoundManager.die_sound)
+
+func _on_pass_through(_entity: Entity) -> void:
+	SoundManager.play_sfx(SoundManager.point_sound)

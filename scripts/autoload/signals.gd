@@ -14,11 +14,17 @@ signal entity_update(entity: Entity)
 # 实体拍打通知
 signal entity_flapped(entity: Entity)
 
+# 实体通过通知
+signal entity_pass_through(entity: Entity)
+
 # 实体碰撞通知
 signal entity_collide(entity: Entity, collider: Entity)
 
 # 实体死亡通知
 signal entity_dead(entity: Entity)
+
+# 得分更新通知
+signal score_update(score: int)
 
 # 进入游戏通知
 signal enter_game()
@@ -40,3 +46,6 @@ signal before_game_over()
 
 # 游戏结束
 signal game_over()
+
+# 显示排行榜
+signal show_leaderboard()

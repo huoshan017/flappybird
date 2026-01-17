@@ -10,6 +10,7 @@ var paused_ui: Node
 var is_show_pause_ui: bool = false
 var gameover_ui: Control 
 var is_show_gameover_ui: bool = false
+var score_ui: Node
 
 var prev_state: Enums.GameState = Global.game_state
 
@@ -60,6 +61,8 @@ func _process(delta: float) -> void:
 		if not is_show_gameover_ui:
 			canvas_layer.add_child(gameover_ui)
 			is_show_gameover_ui = true
+		gameover_ui.best_score_tex._on_set_score(Global.best_score)
+		gameover_ui.current_score_tex._on_set_score(Global.current_score)
 		_game_over_play_anim(delta)
 	else:
 		Loggie.error("Unknown game state: %s" % str(Global.game_state))
@@ -75,6 +78,7 @@ func _on_re_enter_game() -> void:
 	is_show_gameover_ui = false
 	instance.free()
 	instance = null
+	score_ui = null
 	_create_instance()
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_READY
@@ -86,6 +90,9 @@ func _create_instance() -> void:
 		add_child(instance)
 	if canvas_layer == null:
 		canvas_layer = instance.get_node("CanvasLayer") as CanvasLayer
+	if score_ui == null:
+		score_ui = preload("res://prefabs/ui/score.tscn").instantiate()
+		canvas_layer.add_child(score_ui)
 
 func _on_tap_play() -> void:
 	canvas_layer.remove_child(ready_ui)

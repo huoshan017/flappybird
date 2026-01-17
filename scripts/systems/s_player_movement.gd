@@ -1,9 +1,9 @@
 class_name PlayerMovementSystem
 extends System
 
-const JUMP_VELOCITY_Y: float = -400.0 # 跳跃时的初始速度
+const JUMP_VELOCITY_Y: float = -500.0 # 跳跃时的初始速度
 const JUMP_DURATION: float = 0.3 # 跳跃持续时间
-const GRAVITY_ACCELERATION: float = 1200.0 # 重力加速度
+const GRAVITY_ACCELERATION: float = 1500.0 # 重力加速度
 const JUMP_ANGULAR_VELOCITY: float = -2475.0 # 跳跃时的角速度
 const JUMP_ANGLE_LIMIT: float = -20.0 # 跳跃时的最大仰角
 

@@ -1,0 +1,37 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy3j8arkab4ok"]
+
+[ext_resource type="Script" uid="uid://deh30y2aku120" path="res://scripts/ui/score_ui.gd" id="1_4h4ge"]
+[ext_resource type="Texture2D" uid="uid://c0fekd2abt3nr" path="res://resources/pic/font_048.png" id="2_prhky"]
+[ext_resource type="Texture2D" uid="uid://jts7ph1tu8kk" path="res://resources/pic/font_049.png" id="3_b1l33"]
+[ext_resource type="Texture2D" uid="uid://bp7twdaedpunw" path="res://resources/pic/font_050.png" id="4_7wo6v"]
+[ext_resource type="Texture2D" uid="uid://csdamaonlrrkt" path="res://resources/pic/font_051.png" id="5_24xsq"]
+[ext_resource type="Texture2D" uid="uid://c45mvtnwx6wed" path="res://resources/pic/font_052.png" id="6_e83rh"]
+[ext_resource type="Texture2D" uid="uid://ckyu6ybdgkd1c" path="res://resources/pic/font_053.png" id="7_kv0cm"]
+[ext_resource type="Texture2D" uid="uid://c5pdx8elecs8s" path="res://resources/pic/font_054.png" id="8_mjqml"]
+[ext_resource type="Texture2D" uid="uid://c3bbv0krs7d2o" path="res://resources/pic/font_055.png" id="9_qamg6"]
+[ext_resource type="Texture2D" uid="uid://ihwxhqtxrvdd" path="res://resources/pic/font_056.png" id="10_ooqtt"]
+[ext_resource type="Texture2D" uid="uid://dtnegruxj4tc0" path="res://resources/pic/font_057.png" id="11_vq8kx"]
+
+[node name="Score" type="Control"]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4h4ge")
+digit_textures = Array[Texture2D]([ExtResource("2_prhky"), ExtResource("3_b1l33"), ExtResource("4_7wo6v"), ExtResource("5_24xsq"), ExtResource("6_e83rh"), ExtResource("7_kv0cm"), ExtResource("8_mjqml"), ExtResource("9_qamg6"), ExtResource("10_ooqtt"), ExtResource("11_vq8kx")])
+
+[node name="CenterBox" type="HBoxContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+alignment = 1

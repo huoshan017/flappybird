@@ -1,0 +1,32 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwlmfv44q045s"]
+
+[ext_resource type="Script" uid="uid://deh30y2aku120" path="res://scripts/ui/score_ui.gd" id="1_jb520"]
+[ext_resource type="Texture2D" uid="uid://c0lu4vmw0p4n8" path="res://resources/pic/number_score_00.png" id="2_bxtho"]
+[ext_resource type="Texture2D" uid="uid://bxwj70ahpmew7" path="res://resources/pic/number_score_01.png" id="3_c5eqq"]
+[ext_resource type="Texture2D" uid="uid://87gglstey22n" path="res://resources/pic/number_score_02.png" id="4_kxyrc"]
+[ext_resource type="Texture2D" uid="uid://cjyxvcu4ryotp" path="res://resources/pic/number_score_03.png" id="5_hlb7o"]
+[ext_resource type="Texture2D" uid="uid://cyohubgstpesu" path="res://resources/pic/number_score_04.png" id="6_4yhlt"]
+[ext_resource type="Texture2D" uid="uid://d1220qp77bgw8" path="res://resources/pic/number_score_05.png" id="7_ty2w6"]
+[ext_resource type="Texture2D" uid="uid://chfnukq3r4wj6" path="res://resources/pic/number_score_06.png" id="8_bp8x5"]
+[ext_resource type="Texture2D" uid="uid://dxb67ik3m1m1i" path="res://resources/pic/number_score_07.png" id="9_kt0jy"]
+[ext_resource type="Texture2D" uid="uid://c08ot7f7mk3uk" path="res://resources/pic/number_score_08.png" id="10_jlkw0"]
+[ext_resource type="Texture2D" uid="uid://bgnji3spybu47" path="res://resources/pic/number_score_09.png" id="11_4v74b"]
+
+[node name="ScoreOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_jb520")
+digit_textures = Array[Texture2D]([ExtResource("2_bxtho"), ExtResource("3_c5eqq"), ExtResource("4_kxyrc"), ExtResource("5_hlb7o"), ExtResource("6_4yhlt"), ExtResource("7_ty2w6"), ExtResource("8_bp8x5"), ExtResource("9_kt0jy"), ExtResource("10_jlkw0"), ExtResource("11_4v74b")])
+
+[node name="CenterBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2

@@ -5,13 +5,11 @@ const v_bird = preload("res://prefabs/visual/v_bird.tscn")
 const v_floor = preload("res://prefabs/visual/v_floor.tscn")
 const v_pipe_up = preload("res://prefabs/visual/v_pipe_up.tscn")
 const v_pipe_down = preload("res://prefabs/visual/v_pipe_down.tscn")
-const v_background = preload("res://prefabs/visual/v_background.tscn")
 const v_entity_list = [
 	v_bird,
 	v_floor,
 	v_pipe_up,
 	v_pipe_down,
-	v_background
 ]
 
 @onready var camera: Camera2D = $Camera2D

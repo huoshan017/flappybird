@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5r6xtd4t08wa"]
+[gd_scene load_steps=9 format=3 uid="uid://c5r6xtd4t08wa"]
 
 [ext_resource type="Script" uid="uid://c1p7ng3pk52u4" path="res://scripts/ui/gameover_ui.gd" id="1_bql5x"]
 [ext_resource type="Texture2D" uid="uid://ctkxoq0ept6eh" path="res://resources/pic/text_game_over.png" id="1_ph65f"]
 [ext_resource type="Texture2D" uid="uid://gafiafbomkwi" path="res://resources/pic/score_panel.png" id="2_ijo7e"]
 [ext_resource type="Texture2D" uid="uid://dd5llwho5o7t8" path="res://resources/pic/button_play.png" id="3_rodr6"]
 [ext_resource type="Texture2D" uid="uid://2j4q7vgru7yl" path="res://resources/pic/button_score.png" id="4_08m3n"]
+[ext_resource type="PackedScene" uid="uid://cwlmfv44q045s" path="res://prefabs/ui/score_over.tscn" id="4_gnq37"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bql5x"]
 content_margin_left = 5.0
@@ -42,6 +43,30 @@ offset_top = 479.0
 offset_right = 649.0
 offset_bottom = 791.0
 texture = ExtResource("2_ijo7e")
+
+[node name="MedalTexture" type="TextureRect" parent="ScoreTextureRect"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 110.0
+offset_top = 142.0
+offset_right = 150.0
+offset_bottom = 182.0
+
+[node name="CurrentScore" parent="ScoreTextureRect" instance=ExtResource("4_gnq37")]
+layout_mode = 1
+offset_left = 402.0
+offset_top = 100.0
+offset_right = 452.0
+offset_bottom = 120.0
+scale = Vector2(2, 2)
+
+[node name="BestScore" parent="ScoreTextureRect" instance=ExtResource("4_gnq37")]
+layout_mode = 1
+offset_left = 403.0
+offset_top = 194.0
+offset_right = 453.0
+offset_bottom = 214.0
+scale = Vector2(2, 2)
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1

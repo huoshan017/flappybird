@@ -4,4 +4,4 @@ extends Node
 const PHYSICS_FRAME_MS = 33
 
 # 角色水平移動速度
-const CHARACTER_HORIZENTAL_SPEED = 150.0
+const CHARACTER_HORIZENTAL_SPEED = 200.0

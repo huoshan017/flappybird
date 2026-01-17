@@ -33,9 +33,11 @@ var pipe_datalist: Array[pipe_data] = [
 ]
 
 var started: bool = false
-var index: int = 0
+var new_pipe_index: int = 0
 var start_x: float = 0
 var character: CharacterBody2D = null
+var pipe_inst_list: Array[Node] = []
+var pass_index: int = 0
 
 func _ready() -> void:
 	Signals.start_game.connect(on_start_game)
@@ -47,21 +49,22 @@ func query() -> QueryBuilder:
 
 func process(_entities: Array[Entity], _components: Array, _delta: float) -> void:
 	if not started: return
-	if index >= pipe_datalist.size(): return
-	var pd = pipe_datalist[index]
+	check_pass_through()
+	if new_pipe_index >= pipe_datalist.size(): return
+	var pd = pipe_datalist[new_pipe_index]
 	if pd.position.x + start_x > character.position.x+600: return
 	var pipe_inst: Node = null
-	if pipe_datalist[index].up_or_down:
+	if pipe_datalist[new_pipe_index].up_or_down:
 		pipe_inst = pipe_up_prefab.instantiate() 
 	else:
 		pipe_inst = pipe_down_prefab.instantiate()
 	pipe_inst.position = Vector2(start_x + pd.position.x, pd.position.y)
+	pipe_inst_list.append(pipe_inst)
 	Signals.entity_added_to_scene.emit(pipe_inst as Entity)
 	var transform: CTransform = (pipe_inst as Entity).get_component(CTransform) 
 	transform.position = pipe_inst.position
 	Signals.entity_update.emit(pipe_inst as TEntity)
-	index += 1
-
+	new_pipe_index += 1
 	Loggie.notice("Spawn pipe at x: %f, y: %f" % [transform.position.x, transform.position.y])
 
 func on_start_game():
@@ -72,5 +75,16 @@ func on_start_game():
 
 func on_game_over():
 	started = false
-	index = 0
+	pipe_inst_list.clear()
+	pass_index = 0
+	new_pipe_index = 0
 	Loggie.notice("PipeManagerSystem stopped")
+
+func check_pass_through():
+	if not started: return
+	if pass_index >= pipe_inst_list.size(): return
+	var pd = pipe_inst_list[pass_index]
+	if character.position.x > pd.position.x+52: # 52 is pipe width / 2
+		Signals.entity_pass_through.emit(pd as Entity)
+		#Loggie.notice("Entity %s passed through pipe %d" % [str(pd.name), pass_index])
+		pass_index += 1
