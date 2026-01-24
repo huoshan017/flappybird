@@ -1,5 +1,11 @@
 extends Node
 
+enum PlayerPlatform {
+	NONE,
+	GOOGLE,
+	APPLE,
+}
+
 enum GameState {
 	STATE_NONE,
 	STATE_MENU,

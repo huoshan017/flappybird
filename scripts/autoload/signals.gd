@@ -47,5 +47,11 @@ signal before_game_over()
 # 游戏结束
 signal game_over()
 
+# 保存游戏数据到本地
+signal save_game_local(is_force: bool)
+
+# 保存游戏数据到云端
+signal save_game_remote(save_data: PackedByteArray)
+
 # 显示排行榜
 signal show_leaderboard()

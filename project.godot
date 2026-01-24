@@ -22,18 +22,18 @@ Signals="*res://scripts/autoload/signals.gd"
 Enums="*res://scripts/autoload/enums.gd"
 Constants="*res://scripts/autoload/constants.gd"
 Loggie="*res://addons/loggie/loggie.gd"
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 Global="*res://scripts/autoload/global.gd"
 SceneChanger="*res://scenes/scene_changer.tscn"
 SoundManager="*res://scripts/sound_manager.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 GodotPlayGameServices="*res://addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [editor_plugins]
@@ -76,6 +76,5 @@ general/log_level=2
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

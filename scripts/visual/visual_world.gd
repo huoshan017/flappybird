@@ -13,7 +13,9 @@ const v_entity_list = [
 ]
 
 @onready var camera: Camera2D = $Camera2D
-@onready var background: Control = $Background
+@onready var background: Parallax2D = $NewBackground
+
+var camera_init_pos: Vector2
 
 # 讀取指定節點指定屬性
 static func u_get_ventity_config(packed_scene: PackedScene, target_path: NodePath, property_name: String):
@@ -65,6 +67,7 @@ func u_init_signals(world: World) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	camera_init_pos = camera.position
 	u_init_visual_entity()
 	var world = get_parent().get_node("World") as World
 	u_init_signals(world)
@@ -73,7 +76,17 @@ func _process(delta: float) -> void:
 	if Global.game_state == Enums.GameState.STATE_GAMEOVER or Global.game_state == Enums.GameState.STATE_PAUSED or Global.game_state == Enums.GameState.STATE_BEFORE_GAMEOVER:
 		return
 	camera.position.x += Constants.CHARACTER_HORIZENTAL_SPEED *delta
-	background.position.x += Constants.CHARACTER_HORIZENTAL_SPEED * delta
+	#background.position.x += Constants.CHARACTER_HORIZENTAL_SPEED * delta
+
+# 重置 
+func reset(world: World) -> void:
+	camera.position = camera_init_pos
+	for k in ventities_map:
+		var node = ventities_map[k] as TNode2D
+		node.queue_free()
+	ventities_map.clear()
+	world.entity_added.connect(on_add_visual_entity)
+	world.entity_removed.connect(on_remove_visual_entity)
 
 # 添加可視化實體
 func on_add_visual_entity(entity: TEntity) -> void:

@@ -1,22 +1,25 @@
 [gd_scene load_steps=2 format=3 uid="uid://cuc55l7kr00nl"]
 
-[ext_resource type="Texture2D" uid="uid://cxj5d1mwx3b1y" path="res://resources/pic/bg_day.png" id="1_8wqs1"]
+[ext_resource type="Texture2D" uid="uid://buqkrg7p00x62" path="res://resources/pic/bg_day2.jpg" id="1_8wqs1"]
 
 [node name="Background" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(720, 1280)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8wqs1")
 expand_mode = 1
+stretch_mode = 6

@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj85g7iv4u07a"]
+[gd_scene load_steps=5 format=3 uid="uid://dj85g7iv4u07a"]
 
 [ext_resource type="Script" uid="uid://c8h3wp6xcfngy" path="res://scripts/visual/visual_world.gd" id="1_h16sh"]
 [ext_resource type="Script" uid="uid://n6p2hea2d5ho" path="res://scripts/instance.gd" id="1_vx61v"]
 [ext_resource type="PackedScene" uid="uid://368xseorf1eq" path="res://scenes/world.tscn" id="2_vx61v"]
-[ext_resource type="PackedScene" uid="uid://cuc55l7kr00nl" path="res://prefabs/ui/background.tscn" id="4_nek0u"]
-[ext_resource type="PackedScene" uid="uid://f7e1cyg3r1it" path="res://scenes/google_playgames_service.tscn" id="5_h3o1x"]
-[ext_resource type="Script" uid="uid://dqa8j37s1jwcv" path="res://scripts/localfile.gd" id="6_ae3m4"]
+[ext_resource type="PackedScene" uid="uid://doet5o40osum6" path="res://prefabs/ui/new_background.tscn" id="4_chbmb"]
 
 [node name="Instance" type="Node2D"]
 script = ExtResource("1_vx61v")
@@ -15,16 +13,9 @@ script = ExtResource("1_vx61v")
 [node name="VisualWorld" type="Node" parent="."]
 script = ExtResource("1_h16sh")
 
+[node name="NewBackground" parent="VisualWorld" instance=ExtResource("4_chbmb")]
+
 [node name="Camera2D" type="Camera2D" parent="VisualWorld"]
 position = Vector2(360, 640)
 
-[node name="Background" parent="VisualWorld" instance=ExtResource("4_nek0u")]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="World" parent="." instance=ExtResource("2_vx61v")]
-
-[node name="Login" parent="." instance=ExtResource("5_h3o1x")]
-
-[node name="LocalFile" type="Node" parent="."]
-script = ExtResource("6_ae3m4")

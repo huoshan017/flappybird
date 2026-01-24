@@ -14,6 +14,7 @@ func _ready() -> void:
 		box.add_child(t)
 	Signals.start_game.connect(_on_start_game)
 	Signals.score_update.connect(_on_set_score)
+	Signals.re_enter_game.connect(_on_re_enter_game)
 
 func _on_start_game() -> void:
 	_on_set_score(0)
@@ -31,3 +32,6 @@ func _on_set_score(value: int):
 			rect.visible = true
 		else:
 			rect.visible = false
+
+func _on_re_enter_game() -> void:
+	_on_set_score(0)

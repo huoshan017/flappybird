@@ -1,5 +1,7 @@
 extends Node
 
+const DEFAULT_PLAYER_ID = "Player000000"
+
 # 33毫秒物理幀
 const PHYSICS_FRAME_MS = 33
 

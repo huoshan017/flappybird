@@ -135,14 +135,11 @@ func process(entities: Array[Entity], _components: Array, delta: float) -> void:
 			if is_falling_after_collision == false:
 				is_falling_after_collision = true
 				Signals.entity_collide.emit(entity, collider)
-				#Loggie.notice("Player start falling after collision")
 			else: # 碰到其他物体，继续下落
 				character_body.position += motion
 				transform.position = character_body.position
-				#Loggie.notice("Player position updated while falling: (x:%f y:%f)" % [transform.position.x, transform.position.y])
 	else:
 		character_body.position += motion
 		transform.position = character_body.position
-		#Loggie.notice("Player position updated: (x:%f y:%f) no collide" % [transform.position.x, transform.position.y])
 
 	Signals.entity_update.emit(entity)
