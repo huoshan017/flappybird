@@ -2,12 +2,15 @@ extends Node
 
 enum PlayerPlatform {
 	NONE,
-	GOOGLE,
-	APPLE,
+	IOS,
+	IPADOS,
+	STOCK_ANDROID = 10,
 }
 
 enum GameState {
 	STATE_NONE,
+	STATE_LOGO,
+	STATE_LOGIN,
 	STATE_MENU,
 	STATE_READY,
 	STATE_GAMEPLAY,

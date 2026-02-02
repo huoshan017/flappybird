@@ -1,5 +1,9 @@
 extends Node
 
+enum LoginState {
+	Not, Doing, Done,
+}
+
 var instance: GameInstance
 var canvas_layer: CanvasLayer
 var main_menu: Control
@@ -9,6 +13,7 @@ var gameover_ui: Control
 var score_ui: Control
 
 var prev_state: Enums.GameState = Global.game_state
+var login_state: LoginState = LoginState.Not
 
 var curr_gameover_anim_y: float = 0.0
 var is_gameover_anim_playing: bool = false
@@ -16,6 +21,7 @@ const gameover_anim_start_y: float = 1280.0
 const gameover_anim_end_y: float = 0.0
 const gameover_anim_speed: float = 2000.0
 
+const logo_scene = preload("res://prefabs/ui/logo.tscn")
 const main_menu_scene = preload("res://prefabs/ui/main_menu.tscn")
 const ready_scene = preload("res://prefabs/ui/ready.tscn")
 const paused_scene = preload("res://prefabs/ui/paused.tscn")
@@ -24,7 +30,8 @@ const instance_scene = preload("res://scenes/instance.tscn")
 const score_scene = preload("res://prefabs/ui/score.tscn")
 
 func _ready() -> void:
-	Global.game_state = Enums.GameState.STATE_MENU
+	Global.game_state = Enums.GameState.STATE_LOGO
+	Signals.login_done.connect(_on_login_done)
 	Signals.enter_game.connect(_on_enter_game)
 	Signals.re_enter_game.connect(_on_re_enter_game)
 	Signals.tap_play.connect(_on_tap_play)
@@ -35,7 +42,11 @@ func _process(delta: float) -> void:
 	if Global.game_state == prev_state:
 		return
 
-	if Global.game_state == Enums.GameState.STATE_MENU:
+	if Global.game_state == Enums.GameState.STATE_LOGO:
+		Global.game_state = Enums.GameState.STATE_LOGIN
+	elif Global.game_state == Enums.GameState.STATE_LOGIN:
+		_do_login()
+	elif Global.game_state == Enums.GameState.STATE_MENU:
 		_create_instance()
 		if main_menu == null:
 			main_menu = main_menu_scene.instantiate()
@@ -70,6 +81,19 @@ func _process(delta: float) -> void:
 	else:
 		Loggie.error("Unknown game state: %s" % str(Global.game_state))
 
+func _do_login():
+	if login_state == LoginState.Not:
+		login_state = LoginState.Doing
+		Loggie.notice("login state doing")
+		Signals.to_login_account.emit()
+	elif login_state == LoginState.Done:
+		Global.game_state = Enums.GameState.STATE_MENU
+		Loggie.notice("game state transfer to MAINMENU")
+
+func _on_login_done(_success: bool):
+	login_state = LoginState.Done
+	Loggie.notice("login state done")
+
 func _on_enter_game() -> void:
 	#canvas_layer.remove_child(main_menu)
 	if Global.game_state != Enums.GameState.STATE_MENU:
@@ -102,7 +126,6 @@ func _create_instance() -> void:
 func _on_tap_play() -> void:
 	if Global.game_state != Enums.GameState.STATE_READY:
 		Loggie.warn("before tap to play, GameState must be READY, but now is ", Global.game_state)
-		Loggie.notice("ready_ui visible is ", ready_ui.visible)
 		return
 	ready_ui.visible = false
 	prev_state = Global.game_state
@@ -126,12 +149,12 @@ func _on_game_over() -> void:
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_GAMEOVER	
 	_game_over_anim_start()
-	Loggie.notice("!!!!! game over started anim ")
+	Loggie.notice("game over started anim ")
 
 func _game_over_anim_start() -> void:
 	curr_gameover_anim_y = gameover_anim_start_y
 	is_gameover_anim_playing = true
-	Loggie.notice("@@@@@ game over start anim")
+	Loggie.notice("game over start anim")
 
 func _game_over_play_anim(delta: float) -> void:
 	if not is_gameover_anim_playing:

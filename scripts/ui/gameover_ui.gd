@@ -5,14 +5,13 @@ extends Control
 @onready var current_score_tex: ScoreUI = $"ScoreTextureRect/CurrentScore"
 
 func _on_play_button_pressed() -> void:
-	Loggie.notice("##### Play button pressed")
 	SceneChanger.play_fade(func():
 		await SceneChanger.sleep(0.2)
-		Loggie.notice("before re-enter signal emit")
 		Signals.re_enter_game.emit()
-		Loggie.notice("after re-enter signal emitted")
 	)
-	Loggie.notice("Play button pressed, re-entering game signal emitted")
+
+func _on_leaderboard_button_pressed() -> void:
+	Signals.show_leaderboard.emit()
 
 func _set_medal(score: int) -> void:
 	if score >= 100:

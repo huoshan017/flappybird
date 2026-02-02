@@ -2,6 +2,7 @@ extends Node
 
 var game_state: Enums.GameState = Enums.GameState.STATE_NONE
 var player: TEntity = null
+var is_authenticated: bool
 var player_id: String = Constants.DEFAULT_PLAYER_ID
 var player_platform: = Enums.PlayerPlatform.NONE
 var saved_game_ms: int

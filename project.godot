@@ -27,6 +27,7 @@ SceneChanger="*res://scenes/scene_changer.tscn"
 SoundManager="*res://scripts/sound_manager.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 GodotPlayGameServices="*res://addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd"
+Structure="*res://scripts/autoload/structure.gd"
 
 [display]
 

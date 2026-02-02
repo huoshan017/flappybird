@@ -48,7 +48,7 @@ func reset() -> void:
 	world = world_scene.instantiate() as World
 	visual_world.reset(world)
 	# 之所以要把add_child(world)放到visual_world.reset(world)之后，是因为ges在Node.add_child时会调用_ready方法，
-	# world最为child节点会创建并初始化自己的子节点并且发射相关的信号，其中event_added和event_removed被送给连接到此
+	# world作为child节点会创建并初始化自己的子节点并且发射相关的信号，其中event_added和event_removed被送给连接到此
 	# 信号的绑定函数。visual_world.reset(world)中会重新连接这些信号，如果放在add_child(world)之后将收不到这些信号
 	add_child(world)
 	ECS.world = world

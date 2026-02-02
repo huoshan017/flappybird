@@ -85,6 +85,7 @@ offset_top = -442.0
 offset_right = 364.0
 offset_bottom = -254.0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bql5x")
 icon = ExtResource("3_rodr6")
 flat = true
@@ -104,6 +105,7 @@ offset_right = -58.0
 offset_bottom = -247.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gnq37")
 icon = ExtResource("4_08m3n")
 flat = true
@@ -111,3 +113,4 @@ icon_alignment = 1
 expand_icon = true
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="RanklistButton" to="." method="_on_leaderboard_button_pressed"]

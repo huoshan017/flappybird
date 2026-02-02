@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8ls3yv4vn2ld"]
+[gd_scene load_steps=9 format=3 uid="uid://8ls3yv4vn2ld"]
 
 [ext_resource type="Texture2D" uid="uid://c6iuskpt2o0c8" path="res://resources/pic/title.png" id="1_enkug"]
 [ext_resource type="Script" uid="uid://byoq7fn67ta27" path="res://scripts/ui/main_menu.gd" id="2_cwbwj"]
@@ -6,11 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://b6rolkva7gxjo" path="res://resources/pic/button_rate.png" id="4_nr6jy"]
 [ext_resource type="Texture2D" uid="uid://2j4q7vgru7yl" path="res://resources/pic/button_score.png" id="5_cwbwj"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nr6jy"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwbwj"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr6jy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwbwj"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 
@@ -52,6 +56,8 @@ offset_right = 80.5
 offset_bottom = 166.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nr6jy")
 icon = ExtResource("4_nr6jy")
 flat = true
 icon_alignment = 1
@@ -67,6 +73,7 @@ offset_top = -457.0
 offset_right = 342.0
 offset_bottom = -229.0
 grow_vertical = 0
+focus_mode = 0
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cwbwj")
 icon = ExtResource("3_hyes8")
 flat = true
@@ -87,7 +94,8 @@ offset_right = -45.0
 offset_bottom = -252.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nr6jy")
+focus_mode = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cwbwj")
 icon = ExtResource("5_cwbwj")
 flat = true
 icon_alignment = 1

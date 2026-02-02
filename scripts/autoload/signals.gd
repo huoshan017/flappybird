@@ -2,6 +2,18 @@ extends Node
 
 # 逻辑相关信号
 
+# 登陆信号
+signal to_login_account()
+
+# 登陆完成
+signal login_done(success: bool)
+
+# 载入本地存档
+signal to_load_game_local_save(player_id: String)
+
+# 本地存档载入完成
+signal load_game_local_save_done()
+
 # entity添加到场景树
 signal entity_added_to_scene(entity: Entity)
 
@@ -48,10 +60,10 @@ signal before_game_over()
 signal game_over()
 
 # 保存游戏数据到本地
-signal save_game_local(is_force: bool)
+signal save_game_local(player_id: String, is_force: bool, to_remote: bool)
 
 # 保存游戏数据到云端
-signal save_game_remote(save_data: PackedByteArray)
+signal save_game_remote(save_data: PackedByteArray, origin_data: Structure.UserSaveData)
 
 # 显示排行榜
 signal show_leaderboard()
