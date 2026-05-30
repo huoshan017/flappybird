@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dirk3dm5u3y2k"]
+
+[ext_resource type="Script" uid="uid://dwvp7gxm3fs4n" path="res://scripts/entities/t_entity.gd" id="1_no3pb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8gfl"]
+radius = 40.0
+
+[node name="WheelItem" type="AnimatableBody2D" unique_id=16016632]
+collision_layer = 4
+script = ExtResource("1_no3pb")
+type_id = 300
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398171966]
+shape = SubResource("CircleShape2D_j8gfl")

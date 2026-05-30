@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d25omblxvtlnj"]
+
+[ext_resource type="Script" uid="uid://chxye3ao875fa" path="res://scripts/level.gd" id="1_5xbjy"]
+[ext_resource type="PackedScene" uid="uid://cptoeju6urgvl" path="res://prefabs/entity/floor.tscn" id="1_rus8k"]
+[ext_resource type="PackedScene" uid="uid://dtj6k1lgs04x6" path="res://scenes/levels/level1_1.tscn" id="2_4nkto"]
+[ext_resource type="PackedScene" uid="uid://deusne1jf15ep" path="res://prefabs/entity/bird.tscn" id="2_bswci"]
+[ext_resource type="PackedScene" uid="uid://b32h2ge602uum" path="res://scenes/levels/level1_bullets.tscn" id="2_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://brnl034xmvvkr" path="res://scenes/levels/level1_2.tscn" id="3_6761a"]
+[ext_resource type="PackedScene" uid="uid://b70kcxog7f84a" path="res://scenes/levels/level1_3.tscn" id="4_sk5k4"]
+[ext_resource type="PackedScene" uid="uid://d00oeqli04ga" path="res://scenes/levels/level1_4.tscn" id="5_oc4kc"]
+[ext_resource type="PackedScene" uid="uid://rvjpvjw6epll" path="res://scenes/levels/level1_5.tscn" id="6_s8va5"]
+[ext_resource type="PackedScene" uid="uid://xsxws0dulvbc" path="res://scenes/levels/level1_updown_block.tscn" id="7_dga24"]
+[ext_resource type="PackedScene" uid="uid://bt8xjahpkief3" path="res://scenes/levels/level1_hotwheels.tscn" id="9_excbq"]
+
+[node name="Level1" type="Node2D" unique_id=1731935689]
+script = ExtResource("1_5xbjy")
+level_fragments = Array[PackedScene]([ExtResource("2_qxy0u"), ExtResource("7_dga24"), ExtResource("2_4nkto"), ExtResource("3_6761a"), ExtResource("4_sk5k4"), ExtResource("5_oc4kc"), ExtResource("6_s8va5"), ExtResource("9_excbq")])
+
+[node name="Floor" parent="." unique_id=585414400 instance=ExtResource("1_rus8k")]
+position = Vector2(0, 1000)
+
+[node name="Bird" parent="." unique_id=293556554 instance=ExtResource("2_bswci")]
+position = Vector2(250, 600)

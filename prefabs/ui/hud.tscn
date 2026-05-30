@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bf31cic11erd1"]
+
+[ext_resource type="Script" uid="uid://dw5chs15rdu4v" path="res://scripts/ui/hud.gd" id="1_2odaw"]
+
+[node name="Hud" type="Control" unique_id=1936926878]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2odaw")
+
+[node name="Stamina" type="Control" parent="." unique_id=1690358741]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 100.0
+offset_right = 100.0
+offset_bottom = 120.0
+grow_horizontal = 2
+pivot_offset = Vector2(100, 0)
+
+[node name="BackgroundBar" type="ColorRect" parent="Stamina" unique_id=1062887812]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12156863, 0.16078432, 0.21568628, 1)
+
+[node name="StaminaBar" type="ColorRect" parent="Stamina" unique_id=1659928818]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2901961, 0.87058824, 0.5019608, 1)

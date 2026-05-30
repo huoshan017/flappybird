@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://vrc70ehashxk"]
+
+[ext_resource type="Script" uid="uid://cquxkdp7j44b4" path="res://scripts/visual/t_node2d.gd" id="1_31ouw"]
+
+[node name="VBlocker" type="Node2D" unique_id=798669170]
+script = ExtResource("1_31ouw")
+type_id = 500

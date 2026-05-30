@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c2smcrcsknsd"]
+
+[ext_resource type="Script" uid="uid://cquxkdp7j44b4" path="res://scripts/visual/t_node2d.gd" id="1_huxkf"]
+
+[node name="VBullet" type="Node2D" unique_id=728115007]
+script = ExtResource("1_huxkf")
+type_id = 400

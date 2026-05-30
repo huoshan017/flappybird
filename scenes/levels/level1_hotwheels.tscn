@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bt8xjahpkief3"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_h7tf7"]
+[ext_resource type="PackedScene" uid="uid://dn7yiyc1m2fub" path="res://prefabs/entity/hot_wheels.tscn" id="1_yy0kc"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="3_1v8yy"]
+[ext_resource type="PackedScene" uid="uid://dirk3dm5u3y2k" path="res://prefabs/entity/wheel_item.tscn" id="4_x56ie"]
+[ext_resource type="Script" uid="uid://cjv5hhrkbyog2" path="res://scripts/components/c_hotwheels.gd" id="5_7ua0y"]
+
+[sub_resource type="Resource" id="Resource_hr2bj"]
+script = ExtResource("5_7ua0y")
+item = ExtResource("4_x56ie")
+item_count = 10
+radius = 150.0
+rotation_speed = 10.0
+counter_clockwise = true
+
+[node name="Level1_6" type="Node2D" unique_id=1132032246]
+script = ExtResource("1_h7tf7")
+
+[node name="HotWheels" parent="." unique_id=570284778 instance=ExtResource("1_yy0kc")]
+position = Vector2(382, 247)
+
+[node name="HotWheels2" parent="." unique_id=944363677 instance=ExtResource("1_yy0kc")]
+position = Vector2(373, 747)
+component_resources = Array[ExtResource("3_1v8yy")]([SubResource("Resource_hr2bj")])

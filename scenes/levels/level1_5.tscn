@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://rvjpvjw6epll"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_3nv2y"]
+[ext_resource type="PackedScene" uid="uid://cgoqaqw0vlsrm" path="res://prefabs/entity/pipe.tscn" id="2_8va8u"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="3_lvgyc"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="4_cfn7h"]
+[ext_resource type="Script" uid="uid://dc6gjrhsisywp" path="res://scripts/components/c_rotation.gd" id="5_w7ql0"]
+
+[sub_resource type="Resource" id="Resource_3osna"]
+script = ExtResource("4_cfn7h")
+s_width = 90.0
+s_height = 640.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_u5k6i"]
+script = ExtResource("5_w7ql0")
+rotation_speed = 10.0
+metadata/_custom_type_script = "uid://dc6gjrhsisywp"
+
+[node name="Level1_5" type="Node2D" unique_id=835556321]
+script = ExtResource("1_3nv2y")
+width = 1500
+
+[node name="Pipe" parent="." unique_id=423008613 instance=ExtResource("2_8va8u")]
+position = Vector2(825, 637)
+component_resources = Array[ExtResource("3_lvgyc")]([SubResource("Resource_3osna"), SubResource("Resource_u5k6i")])

@@ -1,45 +1,62 @@
-[gd_scene load_steps=7 format=3 uid="uid://368xseorf1eq"]
+[gd_scene format=3 uid="uid://368xseorf1eq"]
 
 [ext_resource type="Script" uid="uid://cdu5tlyk72uu4" path="res://addons/gecs/ecs/world.gd" id="1_tsias"]
-[ext_resource type="Script" uid="uid://ck6mc7q2qt60w" path="res://scripts/systems/s_level.gd" id="3_71j4m"]
+[ext_resource type="Script" uid="uid://o6uvymi2uhy3" path="res://scripts/systems/s_input.gd" id="2_7r4gi"]
 [ext_resource type="Script" uid="uid://7wjqyusko6h4" path="res://scripts/systems/s_player_movement.gd" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://c1pumdh3ox86i" path="res://scripts/systems/s_translation.gd" id="4_i7141"]
 [ext_resource type="Script" uid="uid://bhv4hnusdqt4t" path="res://scripts/systems/s_movement.gd" id="4_qfnet"]
-[ext_resource type="PackedScene" uid="uid://d25omblxvtlnj" path="res://scenes/level_1.tscn" id="5_71j4m"]
-[ext_resource type="Script" uid="uid://bip1jme6bg2ih" path="res://scripts/systems/s_pipe_manager.gd" id="5_qfnet"]
+[ext_resource type="Script" uid="uid://bb0sj4kxcxshy" path="res://scripts/systems/s_hotwheels.gd" id="6_4mrxx"]
+[ext_resource type="Script" uid="uid://curtbyrc6kbvj" path="res://scripts/systems/s_rotation.gd" id="6_i7141"]
+[ext_resource type="PackedScene" uid="uid://d25omblxvtlnj" path="res://scenes/levels/level_1.tscn" id="6_qfnet"]
+[ext_resource type="Script" uid="uid://dnik31g8opk6m" path="res://scripts/systems/s_fastslow_motion.gd" id="7_4mrxx"]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" unique_id=1565349383]
 script = ExtResource("1_tsias")
 entity_nodes_root = NodePath("Entities")
 system_nodes_root = NodePath("Systems")
 metadata/_custom_type_script = "uid://cdu5tlyk72uu4"
 
-[node name="Systems" type="Node" parent="."]
+[node name="Systems" type="Node" parent="." unique_id=1091507344]
 
-[node name="Gameplay" type="Node" parent="Systems"]
+[node name="Gameplay" type="Node" parent="Systems" unique_id=646739614]
 
-[node name="LevelSystem" type="Node" parent="Systems/Gameplay"]
-script = ExtResource("3_71j4m")
+[node name="InputSystem" type="Node" parent="Systems/Gameplay" unique_id=1527422464]
+script = ExtResource("2_7r4gi")
 group = "Gameplay"
-metadata/_custom_type_script = "uid://ck6mc7q2qt60w"
+metadata/_custom_type_script = "uid://o6uvymi2uhy3"
 
-[node name="PipeManagerSystem" type="Node" parent="Systems/Gameplay"]
-script = ExtResource("5_qfnet")
-group = "Gameplay"
-process_empty = true
-metadata/_custom_type_script = "uid://bip1jme6bg2ih"
+[node name="Physics" type="Node" parent="Systems" unique_id=2078388301]
 
-[node name="Physics" type="Node" parent="Systems"]
-
-[node name="PlayerMovementSystem" type="Node" parent="Systems/Physics"]
+[node name="PlayerMovementSystem" type="Node" parent="Systems/Physics" unique_id=509735325]
 script = ExtResource("4_71j4m")
 group = "Physics"
 metadata/_custom_type_script = "uid://7wjqyusko6h4"
 
-[node name="MovementSystem" type="Node" parent="Systems/Physics"]
+[node name="MovementSystem" type="Node" parent="Systems/Physics" unique_id=963878145]
 script = ExtResource("4_qfnet")
 group = "Physics"
 metadata/_custom_type_script = "uid://bhv4hnusdqt4t"
 
-[node name="Entities" type="Node" parent="."]
+[node name="TranslationSystem" type="Node" parent="Systems/Physics" unique_id=1835626050]
+script = ExtResource("4_i7141")
+group = "Physics"
+metadata/_custom_type_script = "uid://c1pumdh3ox86i"
 
-[node name="Level1" parent="Entities" instance=ExtResource("5_71j4m")]
+[node name="RotationSystem" type="Node" parent="Systems/Physics" unique_id=1199292322]
+script = ExtResource("6_i7141")
+group = "Physics"
+metadata/_custom_type_script = "uid://curtbyrc6kbvj"
+
+[node name="HotWheelsSystem" type="Node" parent="Systems/Physics" unique_id=490194728]
+script = ExtResource("6_4mrxx")
+group = "Physics"
+metadata/_custom_type_script = "uid://bb0sj4kxcxshy"
+
+[node name="FastSlowMotionSystem" type="Node" parent="Systems/Physics" unique_id=1148059814]
+script = ExtResource("7_4mrxx")
+group = "Physics"
+metadata/_custom_type_script = "uid://dnik31g8opk6m"
+
+[node name="Entities" type="Node" parent="." unique_id=591934950]
+
+[node name="Level1" parent="Entities" unique_id=1731935689 instance=ExtResource("6_qfnet")]

@@ -11,6 +11,7 @@ var ready_ui: Control
 var paused_ui: Control
 var gameover_ui: Control 
 var score_ui: Control
+var hud_ui: Control
 
 var prev_state: Enums.GameState = Global.game_state
 var login_state: LoginState = LoginState.Not
@@ -28,6 +29,7 @@ const paused_scene = preload("res://prefabs/ui/paused.tscn")
 const gameover_scene = preload("res://prefabs/ui/game_over.tscn")
 const instance_scene = preload("res://scenes/instance.tscn")
 const score_scene = preload("res://prefabs/ui/score.tscn")
+const hud_scene = preload("res://prefabs/ui/hud.tscn")
 
 func _ready() -> void:
 	Global.game_state = Enums.GameState.STATE_LOGO
@@ -58,7 +60,7 @@ func _process(delta: float) -> void:
 		elif not ready_ui.visible:
 			ready_ui.visible = true
 	elif Global.game_state == Enums.GameState.STATE_GAMEPLAY:
-		pass
+		hud_ui.visible = true
 	elif Global.game_state == Enums.GameState.STATE_PAUSED:
 		if paused_ui == null:
 			paused_ui = paused_scene.instantiate()
@@ -88,7 +90,7 @@ func _do_login():
 		Signals.to_login_account.emit()
 	elif login_state == LoginState.Done:
 		Global.game_state = Enums.GameState.STATE_MENU
-		Loggie.notice("game state transfer to MAINMENU")
+		Loggie.notice("game state transfer to menu state")
 
 func _on_login_done(_success: bool):
 	login_state = LoginState.Done
@@ -101,6 +103,7 @@ func _on_enter_game() -> void:
 	main_menu.visible = false
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_READY
+	Loggie.notice("enter game, in ready state")
 
 func _on_re_enter_game() -> void:
 	if Global.game_state != Enums.GameState.STATE_GAMEOVER:
@@ -111,14 +114,20 @@ func _on_re_enter_game() -> void:
 	instance.reset()
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_READY
-	Loggie.notice("Re-enter game")
+	instance.start()
+	Loggie.notice("Re-enter game, in ready state")
 
 func _create_instance() -> void:
 	if instance == null:
 		instance = instance_scene.instantiate() as GameInstance
 		add_child(instance)
+		instance.start()
 	if canvas_layer == null:
 		canvas_layer = instance.get_node("CanvasLayer") as CanvasLayer
+	if hud_ui == null:
+		hud_ui = hud_scene.instantiate()
+		hud_ui.visible = false
+		canvas_layer.add_child(hud_ui)
 	if score_ui == null:
 		score_ui = score_scene.instantiate()
 		canvas_layer.add_child(score_ui)
@@ -130,16 +139,17 @@ func _on_tap_play() -> void:
 	ready_ui.visible = false
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_GAMEPLAY	
-	instance.start()
-	Loggie.notice("tap play")
+	Signals.start_game.emit()
+	Loggie.notice("tapped, start playing")
 
 func _on_before_game_over() -> void:
 	if Global.game_state != Enums.GameState.STATE_GAMEPLAY:
 		Loggie.warn("before enter before game over, GameState must be GAMEPLAY, but now is ", Global.game_state)
 		return
-	instance.pause()
+	#instance.pause()
 	prev_state = Global.game_state
 	Global.game_state = Enums.GameState.STATE_BEFORE_GAMEOVER
+	Loggie.notice("before game over")
 
 func _on_game_over() -> void:
 	if Global.game_state != Enums.GameState.STATE_BEFORE_GAMEOVER && Global.game_state != Enums.GameState.STATE_GAMEPLAY:

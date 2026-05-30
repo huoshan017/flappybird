@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://xsxws0dulvbc"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_8i46o"]
+[ext_resource type="PackedScene" uid="uid://cb4xgieem1k88" path="res://prefabs/entity/block.tscn" id="2_li7o2"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="3_uvvrl"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="4_ahsap"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="5_pqrse"]
+
+[sub_resource type="Resource" id="Resource_1wlpl"]
+script = ExtResource("4_ahsap")
+s_width = 40.0
+s_height = 30.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_pox3a"]
+script = ExtResource("5_pqrse")
+s_speed = 100.0
+s_direction = Vector2(0, 1)
+s_movement_distance = 150.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_uvvrl"]
+script = ExtResource("5_pqrse")
+s_speed = 100.0
+s_direction = Vector2(0, -1)
+s_movement_distance = 150.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_pqrse"]
+script = ExtResource("5_pqrse")
+s_speed = 100.0
+s_direction = Vector2(0, 1)
+s_movement_distance = 150.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_ahsap"]
+script = ExtResource("5_pqrse")
+s_speed = 100.0
+s_direction = Vector2(0, -1)
+s_movement_distance = 150.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[node name="Level1_UpdownBlock" type="Node2D" unique_id=1990374336]
+script = ExtResource("1_8i46o")
+width = 1500
+
+[node name="Block" parent="." unique_id=2090853291 instance=ExtResource("2_li7o2")]
+position = Vector2(620, 240)
+component_resources = Array[ExtResource("3_uvvrl")]([SubResource("Resource_1wlpl"), SubResource("Resource_pox3a")])
+
+[node name="Block2" parent="." unique_id=763882385 instance=ExtResource("2_li7o2")]
+position = Vector2(620, 716)
+component_resources = Array[ExtResource("3_uvvrl")]([SubResource("Resource_1wlpl"), SubResource("Resource_uvvrl")])
+
+[node name="Block3" parent="." unique_id=1026640068 instance=ExtResource("2_li7o2")]
+position = Vector2(1100, 240)
+component_resources = Array[ExtResource("3_uvvrl")]([SubResource("Resource_1wlpl"), SubResource("Resource_pqrse")])
+
+[node name="Block4" parent="." unique_id=2142643237 instance=ExtResource("2_li7o2")]
+position = Vector2(1100, 716)
+component_resources = Array[ExtResource("3_uvvrl")]([SubResource("Resource_1wlpl"), SubResource("Resource_ahsap")])

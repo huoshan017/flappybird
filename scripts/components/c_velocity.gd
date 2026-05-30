@@ -1,3 +1,4 @@
+# 速度组件
 class_name CVelocity
 extends Component
 

@@ -8,16 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="flappybird"
+config/name="flyingbird"
 run/main_scene="uid://y6jqol4bjoul"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ECS="*res://addons/gecs/ecs/ecs.gd"
+ECS="*uid://dfqwl5njvdnmq"
 Signals="*res://scripts/autoload/signals.gd"
 Enums="*res://scripts/autoload/enums.gd"
 Constants="*res://scripts/autoload/constants.gd"
@@ -25,8 +29,8 @@ Loggie="*res://addons/loggie/loggie.gd"
 Global="*res://scripts/autoload/global.gd"
 SceneChanger="*res://scenes/scene_changer.tscn"
 SoundManager="*res://scripts/sound_manager.gd"
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-GodotPlayGameServices="*res://addons/GodotPlayGameServices/scripts/autoloads/godot_play_game_services.gd"
+DebugMenu="*uid://cggqb75a8w8r"
+GodotPlayGameServices="*uid://col6p7c68bfen"
 Structure="*res://scripts/autoload/structure.gd"
 
 [display]
@@ -67,9 +71,21 @@ touch_click={
 "events": []
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Ground"
+2d_physics/layer_3="Obstacle"
+
 [loggie]
 
 general/log_level=2
+
+[navigation]
+
+2d/layer_3=""
+2d/layer_2=""
+2d/layer_1=""
 
 [physics]
 

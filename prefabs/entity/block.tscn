@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cb4xgieem1k88"]
+
+[ext_resource type="Script" uid="uid://dwvp7gxm3fs4n" path="res://scripts/entities/t_entity.gd" id="1_r55se"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_2tlhq"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="3_xu5rt"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="4_xu5rt"]
+
+[sub_resource type="Resource" id="Resource_1wlpl"]
+script = ExtResource("3_xu5rt")
+s_width = 40.0
+s_height = 30.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_jtbyk"]
+script = ExtResource("4_xu5rt")
+s_speed = 100.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r55se"]
+size = Vector2(40, 30)
+
+[node name="Block" type="CharacterBody2D" unique_id=1589393605]
+collision_layer = 4
+script = ExtResource("1_r55se")
+type_id = 500
+component_resources = Array[ExtResource("2_2tlhq")]([SubResource("Resource_1wlpl"), SubResource("Resource_jtbyk")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=471849255]
+shape = SubResource("RectangleShape2D_r55se")

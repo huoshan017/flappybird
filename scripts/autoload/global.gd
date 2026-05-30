@@ -10,6 +10,8 @@ var current_score: int = 0
 var best_score: int = 0
 
 func is_player_entity(entity: TEntity) -> bool:
+	if player == null:
+		return false
 	return player.id == entity.id
 
 func is_floor_entity(entity: TEntity) -> bool:

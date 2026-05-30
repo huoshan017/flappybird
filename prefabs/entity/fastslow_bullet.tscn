@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://gqac1ueg7euo"]
+
+[ext_resource type="Script" uid="uid://dwvp7gxm3fs4n" path="res://scripts/entities/t_entity.gd" id="1_tuoev"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_s1u5m"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="3_xdpug"]
+[ext_resource type="Script" uid="uid://baspwme6vwb0" path="res://scripts/components/c_fastslow_motion.gd" id="4_cvduk"]
+
+[sub_resource type="Resource" id="Resource_s1u5m"]
+script = ExtResource("3_xdpug")
+s_width = 40.0
+s_height = 30.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_monvu"]
+script = ExtResource("4_cvduk")
+basic_linear_velocity = Vector2(-30, 0)
+velocity_factor_list = Array[float]([1.0, 0.2, 0.8, 1.2, 2.0])
+segment_duration = 1.2
+is_loop = true
+metadata/_custom_type_script = "uid://baspwme6vwb0"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1u5m"]
+size = Vector2(40, 30)
+
+[node name="FastslowBullets" type="AnimatableBody2D" unique_id=1331093073]
+collision_layer = 4
+script = ExtResource("1_tuoev")
+type_id = 400
+component_resources = Array[ExtResource("2_s1u5m")]([SubResource("Resource_s1u5m"), SubResource("Resource_monvu")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=302662435]
+shape = SubResource("RectangleShape2D_s1u5m")

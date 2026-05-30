@@ -4,15 +4,7 @@ class_name EBackground
 extends TEntity
 
 func on_ready() -> void:
-	var transform = get_component(CTransform)
-	if not transform:
-		Loggie.error("EBackground missing CTransform component")
-		return
-
-	# 说明设置了初始位置
-	if transform.position != Vector2.ZERO:
-		var node2d = self as Node as Node2D
-		node2d.position = transform.position
+	super.on_ready()
 
 	var velocity = get_component(CVelocity)
 	if not velocity:

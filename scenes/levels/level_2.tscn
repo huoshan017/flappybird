@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bdmfldlajpocq"]
+
+[ext_resource type="PackedScene" uid="uid://cptoeju6urgvl" path="res://prefabs/entity/floor.tscn" id="1_jm1iu"]
+[ext_resource type="PackedScene" uid="uid://deusne1jf15ep" path="res://prefabs/entity/bird.tscn" id="2_pbc48"]
+[ext_resource type="PackedScene" uid="uid://cgoqaqw0vlsrm" path="res://prefabs/entity/pipe.tscn" id="3_ne2mo"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="4_y0kc7"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="6_6cvei"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="7_que50"]
+
+[sub_resource type="Resource" id="Resource_3osna"]
+script = ExtResource("6_6cvei")
+s_width = 90.0
+s_height = 640.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_hey2k"]
+script = ExtResource("7_que50")
+s_speed = 100.0
+s_direction = Vector2(0, 1)
+s_movement_distance = 200.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_wo48x"]
+script = ExtResource("6_6cvei")
+s_width = 90.0
+s_height = 640.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_bge6r"]
+script = ExtResource("7_que50")
+s_speed = 100.0
+s_direction = Vector2(0, 1)
+s_movement_distance = 200.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[node name="Level2" type="Node2D" unique_id=1361639258]
+
+[node name="Floor" parent="." unique_id=1684503750 instance=ExtResource("1_jm1iu")]
+position = Vector2(0, 1000)
+
+[node name="Bird" parent="." unique_id=307992858 instance=ExtResource("2_pbc48")]
+position = Vector2(250, 600)
+
+[node name="Pipe" parent="." unique_id=354197822 instance=ExtResource("3_ne2mo")]
+position = Vector2(1238, 160)
+rotation = 3.1415927
+component_resources = Array[ExtResource("4_y0kc7")]([SubResource("Resource_3osna"), SubResource("Resource_hey2k")])
+
+[node name="Pipe2" parent="." unique_id=423008613 instance=ExtResource("3_ne2mo")]
+position = Vector2(1800, 1109)
+component_resources = Array[ExtResource("4_y0kc7")]([SubResource("Resource_wo48x"), SubResource("Resource_bge6r")])

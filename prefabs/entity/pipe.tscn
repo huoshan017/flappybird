@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cgoqaqw0vlsrm"]
+
+[ext_resource type="Script" uid="uid://cxpxlgt0c8mqw" path="res://scripts/entities/e_pipe.gd" id="1_31tfl"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_5d501"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="3_3lp0l"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="6_3osna"]
+
+[sub_resource type="Resource" id="Resource_3osna"]
+script = ExtResource("3_3lp0l")
+s_width = 90.0
+s_height = 640.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_bge6r"]
+script = ExtResource("6_3osna")
+s_speed = 100.0
+s_direction = Vector2(0, 1)
+s_movement_distance = 200.0
+s_is_cycle = true
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubwfq"]
+size = Vector2(90, 640)
+
+[node name="Pipe" type="StaticBody2D" unique_id=423008613]
+collision_layer = 4
+script = ExtResource("1_31tfl")
+type_id = 200
+component_resources = Array[ExtResource("2_5d501")]([SubResource("Resource_3osna"), SubResource("Resource_bge6r")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=626382231]
+shape = SubResource("RectangleShape2D_ubwfq")

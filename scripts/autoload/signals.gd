@@ -1,5 +1,7 @@
 extends Node
 
+@warning_ignore_start("unused_signal")
+
 # 逻辑相关信号
 
 # 登陆信号
@@ -14,11 +16,11 @@ signal to_load_game_local_save(player_id: String)
 # 本地存档载入完成
 signal load_game_local_save_done()
 
-# entity添加到场景树
-signal entity_added_to_scene(entity: Entity)
+# entity添加到world
+signal entity_added_to_world(entity: Entity)
 
-# entity从场景树移除
-signal entity_removed_from_scene(entity: Entity)
+# entity从world移除
+signal entity_removed_from_world(entity: Entity)
 
 # 更新entity通知
 signal entity_update(entity: Entity)
@@ -67,3 +69,11 @@ signal save_game_remote(save_data: PackedByteArray, origin_data: Structure.UserS
 
 # 显示排行榜
 signal show_leaderboard()
+
+# 消耗体力
+signal consume_stamina()
+
+# 相机移动
+signal camera_move(pos: Vector2)
+
+@warning_ignore_restore("unused_signal")

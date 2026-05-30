@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://brnl034xmvvkr"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_ccevh"]
+[ext_resource type="PackedScene" uid="uid://cgoqaqw0vlsrm" path="res://prefabs/entity/pipe.tscn" id="2_u0qhs"]
+
+[node name="Level1_2" type="Node2D" unique_id=1881699282]
+script = ExtResource("1_ccevh")
+
+[node name="Pipe" parent="." unique_id=423008613 instance=ExtResource("2_u0qhs")]
+position = Vector2(642, 1113)

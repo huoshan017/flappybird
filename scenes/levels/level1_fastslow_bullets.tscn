@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cy6skhcj3n720"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_oevxk"]
+[ext_resource type="PackedScene" uid="uid://gqac1ueg7euo" path="res://prefabs/entity/fastslow_bullet.tscn" id="2_ywhjk"]
+
+[node name="Level1FastslowBullets" type="Node2D" unique_id=80286258]
+script = ExtResource("1_oevxk")
+width = 2000
+
+[node name="FastslowBullets" parent="." unique_id=1331093073 instance=ExtResource("2_ywhjk")]
+position = Vector2(1868, 220)
+
+[node name="FastslowBullets2" parent="." unique_id=811983927 instance=ExtResource("2_ywhjk")]
+position = Vector2(1815, 338)
+
+[node name="FastslowBullets3" parent="." unique_id=2128159014 instance=ExtResource("2_ywhjk")]
+position = Vector2(1724, 484)
+
+[node name="FastslowBullets4" parent="." unique_id=1126755554 instance=ExtResource("2_ywhjk")]
+position = Vector2(1641, 621)
+
+[node name="FastslowBullets5" parent="." unique_id=2058397412 instance=ExtResource("2_ywhjk")]
+position = Vector2(1538, 763)

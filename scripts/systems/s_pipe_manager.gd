@@ -60,11 +60,12 @@ func process(_entities: Array[Entity], _components: Array, _delta: float) -> voi
 		pipe_inst = pipe_down_prefab.instantiate()
 	pipe_inst.position = Vector2(start_x + pd.position.x, pd.position.y)
 	pipe_inst_list.append(pipe_inst)
-	Signals.entity_added_to_scene.emit(pipe_inst as Entity)
+	Signals.entity_added_to_world.emit(pipe_inst as Entity)
 	var transform: CTransform = (pipe_inst as Entity).get_component(CTransform) 
 	transform.position = pipe_inst.position
 	Signals.entity_update.emit(pipe_inst as TEntity)
 	new_pipe_index += 1
+	check_recycle()
 	Loggie.notice("Spawn pipe at x: %f, y: %f" % [transform.position.x, transform.position.y])
 
 func on_start_game():
@@ -88,3 +89,13 @@ func check_pass_through():
 		Signals.entity_pass_through.emit(pd as Entity)
 		#Loggie.notice("Entity %s passed through pipe %d" % [str(pd.name), pass_index])
 		pass_index += 1
+
+func check_recycle():
+	if not started: return
+	if pipe_inst_list.size() == 0: return
+	var pd = pipe_inst_list[0]
+	if character.position.x > pd.position.x+200: # 200 is some distance after the pipe
+		Signals.entity_removed_from_world.emit(pd as Entity)
+		pipe_inst_list.remove_at(0)
+		pass_index -= 1
+		Loggie.notice("Entity %s removed from scene" % [str(pd.name)])

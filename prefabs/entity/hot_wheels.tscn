@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dn7yiyc1m2fub"]
+
+[ext_resource type="Script" uid="uid://dwvp7gxm3fs4n" path="res://scripts/entities/t_entity.gd" id="1_0xw8o"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_p0tjv"]
+[ext_resource type="PackedScene" uid="uid://dirk3dm5u3y2k" path="res://prefabs/entity/wheel_item.tscn" id="3_7u6mn"]
+[ext_resource type="Script" uid="uid://cjv5hhrkbyog2" path="res://scripts/components/c_hotwheels.gd" id="3_bm1uh"]
+
+[sub_resource type="Resource" id="Resource_7u6mn"]
+script = ExtResource("3_bm1uh")
+item = ExtResource("3_7u6mn")
+item_count = 10
+radius = 150.0
+rotation_speed = 10.0
+rotation_direction = true
+
+[node name="HotWheels" type="Node2D" unique_id=570284778]
+script = ExtResource("1_0xw8o")
+type_id = -1
+component_resources = Array[ExtResource("2_p0tjv")]([SubResource("Resource_7u6mn")])

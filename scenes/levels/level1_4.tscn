@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d00oeqli04ga"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_xjubd"]
+[ext_resource type="PackedScene" uid="uid://c7iwyroeuxsf4" path="res://prefabs/entity/horizon_pipe.tscn" id="2_r1c5o"]
+
+[node name="Level1_4" type="Node2D" unique_id=1237721333]
+script = ExtResource("1_xjubd")
+width = 3000
+
+[node name="Pipe" parent="." unique_id=423008613 instance=ExtResource("2_r1c5o")]
+position = Vector2(1774, 165)
+
+[node name="Pipe2" parent="." unique_id=74224449 instance=ExtResource("2_r1c5o")]
+position = Vector2(1522, 323)
+
+[node name="Pipe3" parent="." unique_id=661691378 instance=ExtResource("2_r1c5o")]
+position = Vector2(1248, 491)

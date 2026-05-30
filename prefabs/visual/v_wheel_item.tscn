@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d2brrpv5tngpf"]
+
+[ext_resource type="Script" uid="uid://cquxkdp7j44b4" path="res://scripts/visual/t_node2d.gd" id="1_0ewx6"]
+
+[node name="VWheelItem" type="Node2D" unique_id=368765226]
+script = ExtResource("1_0ewx6")
+type_id = 300
+metadata/_custom_type_script = "uid://cquxkdp7j44b4"

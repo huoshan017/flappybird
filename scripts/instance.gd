@@ -3,13 +3,13 @@ extends Node
 
 enum InstanceState {
 	STATE_NOT_STARTED, # 未开始
-	STATE_PLAYING,	 # 游戏中
+	STATE_RUNNING,	 # 游戏中
 	STATE_PAUSED	# 暂停
 }
 
 const world_scene = preload("res://scenes/world.tscn")
 
-@onready var visual_world: Node = $VisualWorld	
+@onready var visual_world: VisualWorld = $VisualWorld	
 @onready var world: World = $World
 
 var state: InstanceState = InstanceState.STATE_NOT_STARTED
@@ -18,27 +18,34 @@ var state: InstanceState = InstanceState.STATE_NOT_STARTED
 func _ready() -> void:
 	if world == null: world = world_scene.instantiate() as World
 	ECS.world = world
-	Signals.entity_added_to_scene.connect(on_entity_added_to_scene)
-	Signals.entity_removed_from_scene.connect(on_entity_removed_from_scene)
+	Signals.entity_added_to_world.connect(on_entity_added_to_world)
+	Signals.entity_removed_from_world.connect(on_entity_removed_from_world)
 	Signals.entity_collide.connect(on_entity_collide)
 	Signals.entity_dead.connect(on_entity_dead)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if state != InstanceState.STATE_RUNNING:
+		return
 	world.process(delta, 'Gameplay')
 
 func _physics_process(delta: float) -> void:
+	if state != InstanceState.STATE_RUNNING:
+		return
 	world.process(delta, 'Physics')
 	
 func start() -> void:
-	state = InstanceState.STATE_PLAYING
-	Signals.start_game.emit()
+	state = InstanceState.STATE_RUNNING
+	#Signals.start_game.emit()
 
 func stop() -> void:
 	state = InstanceState.STATE_NOT_STARTED
 
 func pause() -> void:
 	state = InstanceState.STATE_PAUSED
+
+func resume() -> void:
+	state = InstanceState.STATE_RUNNING
 
 func reset() -> void:
 	state = InstanceState.STATE_NOT_STARTED
@@ -53,10 +60,10 @@ func reset() -> void:
 	add_child(world)
 	ECS.world = world
 
-func on_entity_added_to_scene(entity: Entity):
+func on_entity_added_to_world(entity: Entity):
 	world.add_entity(entity)
 
-func on_entity_removed_from_scene(entity: Entity):
+func on_entity_removed_from_world(entity: Entity):
 	world.remove_entity(entity)
 
 func on_entity_dead(entity: Entity) -> void:

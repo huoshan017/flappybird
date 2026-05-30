@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b70kcxog7f84a"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_ta3o4"]
+[ext_resource type="PackedScene" uid="uid://cgoqaqw0vlsrm" path="res://prefabs/entity/pipe.tscn" id="2_lvgbf"]
+
+[node name="Level1_3" type="Node2D" unique_id=1794690915]
+script = ExtResource("1_ta3o4")
+
+[node name="Pipe" parent="." unique_id=423008613 instance=ExtResource("2_lvgbf")]
+position = Vector2(632, 275)
+rotation = 3.1415927
+
+[node name="Pipe2" parent="." unique_id=481711651 instance=ExtResource("2_lvgbf")]
+position = Vector2(492, 275)
+rotation = 3.1415927
+
+[node name="Pipe3" parent="." unique_id=1466463719 instance=ExtResource("2_lvgbf")]
+position = Vector2(358, 275)
+rotation = 3.1415927
+
+[node name="Pipe4" parent="." unique_id=894076877 instance=ExtResource("2_lvgbf")]
+position = Vector2(230, 275)
+rotation = 3.1415927

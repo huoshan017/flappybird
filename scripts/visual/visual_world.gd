@@ -3,19 +3,28 @@ extends Node
 
 const v_bird = preload("res://prefabs/visual/v_bird.tscn")
 const v_floor = preload("res://prefabs/visual/v_floor.tscn")
+const v_pipe = preload("res://prefabs/visual/v_pipe.tscn")
 const v_pipe_up = preload("res://prefabs/visual/v_pipe_up.tscn")
 const v_pipe_down = preload("res://prefabs/visual/v_pipe_down.tscn")
+const v_wheel_item = preload("res://prefabs/visual/v_wheel_item.tscn")
+const v_bullet = preload("res://prefabs/visual/v_bullet.tscn")
+const v_blocker = preload("res://prefabs/visual/v_blocker.tscn")
 const v_entity_list = [
 	v_bird,
 	v_floor,
+	v_pipe,
 	v_pipe_up,
 	v_pipe_down,
+	v_wheel_item,
+	v_bullet,
+	v_blocker,
 ]
 
 @onready var camera: Camera2D = $Camera2D
 @onready var background: Parallax2D = $NewBackground
 
 var camera_init_pos: Vector2
+var camera_player_x_distance: float = 0.0
 
 # 讀取指定節點指定屬性
 static func u_get_ventity_config(packed_scene: PackedScene, target_path: NodePath, property_name: String):
@@ -52,6 +61,9 @@ var ventity_prefabs: = {}
 # 可視化實體實例對應表
 var ventities_map: = {}
 
+# 每0.05秒檢查一次相机位置
+var check_time_ms: float = -0.1
+
 # 初始化可視化實體對應表
 func u_init_visual_entity():
 	for prefab in v_entity_list:
@@ -72,11 +84,21 @@ func _ready() -> void:
 	var world = get_parent().get_node("World") as World
 	u_init_signals(world)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Global.game_state == Enums.GameState.STATE_GAMEOVER or Global.game_state == Enums.GameState.STATE_PAUSED or Global.game_state == Enums.GameState.STATE_BEFORE_GAMEOVER:
 		return
-	camera.position.x += Constants.CHARACTER_HORIZENTAL_SPEED *delta
-	#background.position.x += Constants.CHARACTER_HORIZENTAL_SPEED * delta
+
+	if check_time_ms < 0:
+		check_time_ms = 0.0
+		Signals.camera_move.emit(camera.position)	
+		return
+
+	#camera.position.x += Constants.CHARACTER_HORIZENTAL_SPEED *delta
+	#if check_time_ms < 0.05:
+	#	check_time_ms += delta
+	#	return
+	#check_time_ms -= 0.05
+	#Signals.camera_move.emit(camera.position)
 
 # 重置 
 func reset(world: World) -> void:
@@ -91,6 +113,7 @@ func reset(world: World) -> void:
 # 添加可視化實體
 func on_add_visual_entity(entity: TEntity) -> void:
 	var type_id = entity.type_id
+	if type_id < 0: return
 	if not ventity_prefabs.has(type_id):
 		Loggie.error("No visual entity for type id: ", type_id)
 		return
@@ -108,7 +131,7 @@ func on_add_visual_entity(entity: TEntity) -> void:
 
 # 刪除可視化實體
 func on_remove_visual_entity(entity: TEntity) -> void:
-	if not ventities_map[entity.id]:
+	if not ventities_map.has(entity.id):
 		Loggie.warn("No visual entity found for entity id: ", entity.id)
 		return
 
@@ -128,13 +151,25 @@ func on_update_visual_entity(entity: TEntity) -> void:
 	
 # 更新實體內部函數
 func on_update_visual_entity_(entity: TEntity, ventity: TNode2D) -> void:
-	var entity_transform: CTransform = entity.get_component(CTransform)
-	if entity_transform == null:
-		Loggie.error("Entity id ", entity.id, " has no CTransform component, update failed")
+	#var entity_transform: CTransform = entity.get_component(CTransform)
+	#if entity_transform == null:
+	#	Loggie.error("Entity id ", entity.id, " has no CTransform component, update failed")
+	#	return
+	#ventity.position = entity_transform.position
+	#ventity.rotation_degrees = entity_transform.rotation
+	var node = entity as Node as Node2D
+	if node == null:
+		Loggie.error("Entity id ", entity.id, " is not a Node2D, update failed")
 		return
+	ventity.position = node.position
+	ventity.rotation_degrees = node.rotation_degrees
 
-	ventity.position = entity_transform.position
-	ventity.rotation_degrees = entity_transform.rotation
+	if Global.is_player_entity(entity):
+		if camera_player_x_distance == 0.0:
+			camera_player_x_distance = camera.position.x - node.position.x
+		camera.position.x = ventity.position.x + camera_player_x_distance
+		Signals.camera_move.emit(camera.position)
+	
 
 # 可視化實體死亡處理
 func u_visual_entity_dead(entity: TEntity) -> void:

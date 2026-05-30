@@ -1,9 +1,9 @@
 class_name PlayerMovementSystem
 extends System
 
-const JUMP_VELOCITY_Y: float = -500.0 # 跳跃时的初始速度
+const JUMP_VELOCITY_Y: float = -300.0 # 跳跃时的初始速度
 const JUMP_DURATION: float = 0.3 # 跳跃持续时间
-const GRAVITY_ACCELERATION: float = 1500.0 # 重力加速度
+const GRAVITY_ACCELERATION: float = 700.0 # 重力加速度
 const JUMP_ANGULAR_VELOCITY: float = -2475.0 # 跳跃时的角速度
 const JUMP_ANGLE_LIMIT: float = -20.0 # 跳跃时的最大仰角
 
@@ -73,6 +73,15 @@ class RotationProcess:
 
 		character_body.rotation_degrees = transform.rotation
 
+# 记录上一次的动作类型
+var prev_action = Enums.ActionType.None
+
+# 是否正在加速往前
+var is_accelerating_forward: bool = false
+
+# 临时存储组件引用，避免每帧重复获取
+var temp_transform = CTransform.new()
+
 # 旋转处理器成员
 var rotation_process: RotationProcess
 
@@ -81,7 +90,7 @@ var is_falling_after_collision: bool = false
 
 # 过滤条件
 func query() -> QueryBuilder:
-	return q.with_all([CInput, CCollisionShapeObject, CVelocity, CTransform]).iterate([CCollisionShapeObject, CVelocity, CTransform])
+	return q.with_all([CInput, CCollisionShapeObject, CVelocity]).iterate([CCollisionShapeObject, CVelocity])
 
 # 物理更新，不用delta，使用固定的时间步长
 func process(entities: Array[Entity], _components: Array, delta: float) -> void:
@@ -98,7 +107,7 @@ func process(entities: Array[Entity], _components: Array, delta: float) -> void:
 	var velocity = entity.get_component(CVelocity)
 	var collision_obj = entity.get_component(CCollisionShapeObject)
 	var character_body: CharacterBody2D = collision_obj.collision_obj_ as CharacterBody2D
-	var transform = entity.get_component(CTransform)
+	#var transform = entity.get_component(CTransform)
 
 	if rotation_process == null:
 		rotation_process = RotationProcess.new()
@@ -107,14 +116,27 @@ func process(entities: Array[Entity], _components: Array, delta: float) -> void:
 	if Global.game_state == Enums.GameState.STATE_GAMEPLAY or Global.game_state == Enums.GameState.STATE_BEFORE_GAMEOVER:
 		# 这里的游戏状态是指玩家可以输入操作的状态，此时才可以跳跃且受到重力的影响
 		if Global.game_state == Enums.GameState.STATE_GAMEPLAY:
-			var input = entity.get_component(CInput)
-			var isj = input.is_jumping()
-			if isj:
+			var input: CInput = entity.get_component(CInput)
+			var action = input.get_action()
+			# 跳跃
+			if action == Enums.ActionType.UpFlying:
 				velocity.velocity.y = JUMP_VELOCITY_Y
 				if rotation_process.start_jump():
 					Signals.entity_flapped.emit(entity) # 发出拍打信号
-		velocity.velocity.y += GRAVITY_ACCELERATION*delta # 重力加速度
-		rotation_process.update(transform, character_body, delta)
+			# 加速往前
+			elif action == Enums.ActionType.Forward:
+				if prev_action != Enums.ActionType.Forward:
+					velocity.velocity.y = 0
+					velocity.velocity.x = Constants.CHARACTER_HORIZENTAL_SPEED*1.5
+					is_accelerating_forward = true
+			else:
+				if prev_action == Enums.ActionType.Forward:
+					velocity.velocity.x = Constants.CHARACTER_HORIZENTAL_SPEED
+					is_accelerating_forward = false
+			prev_action = action
+		if not is_accelerating_forward:
+			velocity.velocity.y += GRAVITY_ACCELERATION*delta # 重力加速度
+			rotation_process.update(temp_transform, character_body, delta)
 
 	var motion = velocity.velocity * delta
 	# 在游戏结束前状态，角色不再水平移动
@@ -126,20 +148,21 @@ func process(entities: Array[Entity], _components: Array, delta: float) -> void:
 		# 碰到地面，触发实体死亡信号
 		if Global.is_floor_entity(collider):
 			var collider_transform = collider.get_component(CTransform)
-			Loggie.notice("!!!! collider position: (x:%f y:%f), character_body position: (x:%f, y:%f)" % [collider_transform.position.x, collider_transform.position.y, character_body.position.x, character_body.position.y]) 
-			transform.position = character_body.position
+			Loggie.notice("!!!! falling on the floor, collider position: (x:%f y:%f), character_body position: (x:%f, y:%f)" % [collider_transform.position.x, collider_transform.position.y, character_body.position.x, character_body.position.y]) 
+			temp_transform.position = character_body.position
 			is_falling_after_collision = false
 			Signals.entity_dead.emit(entity)
 		else:
 			# 处理碰撞逻辑
-			if is_falling_after_collision == false:
+			if not is_falling_after_collision:
 				is_falling_after_collision = true
 				Signals.entity_collide.emit(entity, collider)
+				Loggie.notice("!!!! collide with obstacle entity, to start falling")
 			else: # 碰到其他物体，继续下落
 				character_body.position += motion
-				transform.position = character_body.position
+				temp_transform.position = character_body.position
 	else:
 		character_body.position += motion
-		transform.position = character_body.position
+		temp_transform.position = character_body.position
 
 	Signals.entity_update.emit(entity)

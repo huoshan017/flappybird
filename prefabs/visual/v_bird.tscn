@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://du03c66cpbau2"]
+[gd_scene format=3 uid="uid://du03c66cpbau2"]
 
 [ext_resource type="Texture2D" uid="uid://cvi4y2fl4e34h" path="res://resources/pic/bird0_0.png" id="1_l8114"]
 [ext_resource type="Script" uid="uid://byxnwyk58slgq" path="res://scripts/visual/visual_bird.gd" id="1_wov7k"]
@@ -8,7 +8,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_dfha8"]
 animations = [{
 "frames": [{
-"duration": 0.81,
+"duration": 1.0,
 "texture": ExtResource("1_l8114")
 }, {
 "duration": 1.0,
@@ -19,17 +19,18 @@ animations = [{
 }],
 "loop": true,
 "name": &"bird_flying",
-"speed": 5.0
+"speed": 3.0
 }]
 
-[node name="VisualBird" type="Node2D"]
+[node name="VisualBird" type="Node2D" unique_id=1028782301]
 z_index = 1
 script = ExtResource("1_wov7k")
 type_id = 1
 metadata/type_id = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=915409554]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dfha8")
 animation = &"bird_flying"
 frame = 2
+frame_progress = 0.7072421

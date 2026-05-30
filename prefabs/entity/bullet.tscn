@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bxihf0ok0kyku"]
+
+[ext_resource type="Script" uid="uid://dwvp7gxm3fs4n" path="res://scripts/entities/t_entity.gd" id="1_ja1j7"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_wr4lw"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="3_y65i3"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="4_y65i3"]
+
+[sub_resource type="Resource" id="Resource_roxk2"]
+script = ExtResource("3_y65i3")
+s_speed = 100.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_k66c1"]
+script = ExtResource("4_y65i3")
+s_width = 40.0
+s_height = 30.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja1j7"]
+size = Vector2(40, 30)
+
+[node name="Bullet" type="CharacterBody2D" unique_id=73101411]
+collision_layer = 4
+script = ExtResource("1_ja1j7")
+type_id = 400
+component_resources = Array[ExtResource("2_wr4lw")]([SubResource("Resource_roxk2"), SubResource("Resource_k66c1")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=372679835]
+shape = SubResource("RectangleShape2D_ja1j7")

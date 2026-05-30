@@ -205,4 +205,4 @@ func _on_show_leaderboard():
 # 按钮点击示例：显示成就
 func _on_show_achievements():
 	if play_services != null:
-		play_services.show_achievements()
+		play_services.call("showAchievements")

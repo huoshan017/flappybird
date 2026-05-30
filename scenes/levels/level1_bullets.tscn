@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b32h2ge602uum"]
+
+[ext_resource type="Script" uid="uid://cm6kbr3oplvbv" path="res://scripts/level_fragment.gd" id="1_3sw82"]
+[ext_resource type="PackedScene" uid="uid://bxihf0ok0kyku" path="res://prefabs/entity/bullet.tscn" id="2_xifmy"]
+[ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="3_gfttt"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="4_36cjy"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="5_corcp"]
+
+[sub_resource type="Resource" id="Resource_7bwui"]
+script = ExtResource("4_36cjy")
+s_speed = 150.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_k66c1"]
+script = ExtResource("5_corcp")
+s_width = 40.0
+s_height = 30.0
+metadata/_custom_type_script = "uid://bwyl3axjq85dy"
+
+[sub_resource type="Resource" id="Resource_gfttt"]
+script = ExtResource("4_36cjy")
+s_speed = 140.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_36cjy"]
+script = ExtResource("4_36cjy")
+s_speed = 130.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_corcp"]
+script = ExtResource("4_36cjy")
+s_speed = 120.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_vb5s1"]
+script = ExtResource("4_36cjy")
+s_speed = 110.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[sub_resource type="Resource" id="Resource_lwgmb"]
+script = ExtResource("4_36cjy")
+s_speed = 90.0
+s_direction = Vector2(-1, 0)
+s_movement_distance = 5000.0
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
+[node name="Level1_Bullets" type="Node2D" unique_id=1071867289]
+script = ExtResource("1_3sw82")
+width = 1300
+
+[node name="Bullet" parent="." unique_id=1605169879 instance=ExtResource("2_xifmy")]
+position = Vector2(1215, 318)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_7bwui"), SubResource("Resource_k66c1")])
+
+[node name="Bullet2" parent="." unique_id=910395996 instance=ExtResource("2_xifmy")]
+position = Vector2(1150, 380)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_gfttt"), SubResource("Resource_k66c1")])
+
+[node name="Bullet3" parent="." unique_id=1213448178 instance=ExtResource("2_xifmy")]
+position = Vector2(1078, 438)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_36cjy"), SubResource("Resource_k66c1")])
+
+[node name="Bullet4" parent="." unique_id=1542911947 instance=ExtResource("2_xifmy")]
+position = Vector2(1001, 504)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_corcp"), SubResource("Resource_k66c1")])
+
+[node name="Bullet5" parent="." unique_id=412978066 instance=ExtResource("2_xifmy")]
+position = Vector2(927, 577)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_vb5s1"), SubResource("Resource_k66c1")])
+
+[node name="Bullet6" parent="." unique_id=2109948865 instance=ExtResource("2_xifmy")]
+position = Vector2(854, 638)
+
+[node name="Bullet7" parent="." unique_id=1408302651 instance=ExtResource("2_xifmy")]
+position = Vector2(774, 698)
+component_resources = Array[ExtResource("3_gfttt")]([SubResource("Resource_lwgmb"), SubResource("Resource_k66c1")])

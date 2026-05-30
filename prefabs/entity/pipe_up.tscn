@@ -1,25 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://6t6lnrg7yh7r"]
+[gd_scene format=3 uid="uid://6t6lnrg7yh7r"]
 
 [ext_resource type="Script" uid="uid://cxpxlgt0c8mqw" path="res://scripts/entities/e_pipe.gd" id="1_31tfl"]
 [ext_resource type="Script" uid="uid://b6k13gc2m4e5s" path="res://addons/gecs/ecs/component.gd" id="2_5d501"]
-[ext_resource type="Script" uid="uid://dfigqaghct6hs" path="res://scripts/components/c_transform.gd" id="3_at7wy"]
+[ext_resource type="Script" uid="uid://bwyl3axjq85dy" path="res://scripts/components/c_size.gd" id="3_3lp0l"]
 [ext_resource type="Script" uid="uid://cxpqdu5wjlikp" path="res://scripts/components/c_pipe_id.gd" id="4_1q7wq"]
+[ext_resource type="Script" uid="uid://e4x0m1e4ceb8" path="res://scripts/components/c_translation.gd" id="6_t65a7"]
 
-[sub_resource type="Resource" id="Resource_31tfl"]
-script = ExtResource("3_at7wy")
-metadata/_custom_type_script = "uid://dfigqaghct6hs"
+[sub_resource type="Resource" id="Resource_t65a7"]
+script = ExtResource("3_3lp0l")
+s_width = 90.0
+s_height = 640.0
 
 [sub_resource type="Resource" id="Resource_3lp0l"]
 script = ExtResource("4_1q7wq")
 metadata/_custom_type_script = "uid://cxpqdu5wjlikp"
 
+[sub_resource type="Resource" id="Resource_xavq3"]
+script = ExtResource("6_t65a7")
+metadata/_custom_type_script = "uid://e4x0m1e4ceb8"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfmnk"]
 size = Vector2(90, 640)
 
-[node name="PipeUp" type="StaticBody2D"]
+[node name="PipeUp" type="StaticBody2D" unique_id=354197822]
+collision_layer = 4
 script = ExtResource("1_31tfl")
 type_id = 101
-component_resources = Array[ExtResource("2_5d501")]([SubResource("Resource_31tfl"), SubResource("Resource_3lp0l")])
+component_resources = Array[ExtResource("2_5d501")]([SubResource("Resource_t65a7"), SubResource("Resource_3lp0l"), SubResource("Resource_xavq3")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=275215071]
 shape = SubResource("RectangleShape2D_kfmnk")

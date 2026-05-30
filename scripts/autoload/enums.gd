@@ -19,6 +19,14 @@ enum GameState {
 	STATE_GAMEOVER
 }
 
+enum GamePlaySubState {
+	SUBSTATE_NONE,
+	SUBSTATE_PLAYING,
+	SUBSTATE_PAUSED,
+	SUBSTATE_BEFORE_GAMEOVER,
+	SUBSTATE_GAMEOVER,
+}
+
 enum CollisionObjectType {
 	AREA,
 	RIGID,
@@ -42,4 +50,12 @@ enum EntityType {
 	Floor = 100,
 	PipeUp = 101,
 	PipeDown = 102,
+	Pipe = 200,
+}
+
+enum ActionType {
+	None,
+	UpFlying = 1, # 往上飞
+	DownFlying = 2, # 往下飞
+	Forward = 3, # 冲刺
 }
